@@ -1,21 +1,20 @@
-﻿using Eudr.Traces.Integrations.Configurations;
-using Eudr.Traces.Integrations.ServiceAgents;
-using Eudr.Traces.Integrations.ServiceAgents.Interfaces;
+﻿using Eudr.Traces.Integrations;
+using Eudr.Traces.Integrations.Configurations;
 using Eudr.Traces.Integrations.ServiceAgents.Proxys.EUDRSubmissionService;
-using Microsoft.Extensions.Configuration;
 using System.IO;
 using System.Text;
 
 
-// Setup Configuration
-var config = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appsettings.json", optional: false)
-    .Build();
+
 
 // Bind settings
-var settings = config.GetSection("EudrSettings").Get<EudrSettings>();
-IEUDRSubmissionServiceAgent agent = new EUDRSubmissionServiceAgent(settings);
+EudrSettings eudrSettings = new EudrSettings();
+eudrSettings.ApiUrl = "https://acceptance.eudr.webcloud.ec.europa.eu";
+eudrSettings.Username = "";
+eudrSettings.AuthenticationKey = "";
+eudrSettings.WebServiceClientId = "";
+
+IEUDRServiceAgent agent = new EUDRServiceAgent(eudrSettings);
 
 // Test setup
 // Add and get status
@@ -92,6 +91,6 @@ Console.WriteLine("Submit DDS");
 var response = await agent.SubmitDdsAsync(request);
 Console.WriteLine("Response DDS" + response.SubmitStatementResponse1.ddsIdentifier);
 
-IEUDRRetrievalServiceAgent agentRetrieval = new EUDRRetrievalServiceAgent(settings);
-var responseStatus= await agentRetrieval.GetDdsStatusAsync([response.SubmitStatementResponse1.ddsIdentifier]);
+
+var responseStatus= await agent.GetDdsStatusAsync([response.SubmitStatementResponse1.ddsIdentifier]);
 Console.WriteLine("Response Status DDS" + response);
