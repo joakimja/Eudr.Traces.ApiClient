@@ -1,0 +1,36 @@
+name: Build and Publish NuGet Package
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore '././src/Eudr.Traces/Eudr.Traces.sln'
+
+    - name: Build project
+      run: dotnet build '././src/Eudr.Traces/Eudr.Traces.sln' --configuration Release --no-restore
+      
+    - name: Run unit tests
+      run: dotnet test '././src/Eudr.Traces/Eudr.Traces.Tests/Eudr.Traces.Tests.csproj' --configuration Release --no-build --verbosity normal
+
+    - name: Pack NuGet package
+      run: dotnet pack '././src/Eudr.Traces/Eudr.Traces.Integrations/Eudr.Traces.Integrations.csproj' --configuration Release --no-build
+
+    - name: Publish to NuGet.org
+      run: dotnet nuget push "**/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
