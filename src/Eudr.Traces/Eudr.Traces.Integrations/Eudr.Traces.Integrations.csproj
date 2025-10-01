@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 
     <!-- NuGet metadata -->
-    <PackageId>Eudr.Traces.ApiClient</PackageId>
+    <PackageId>Eudr.Traces.Integrations</PackageId>
     <Version>1.0.0</Version>
     <!-- ändras i pipeline om du vill -->
     <Authors>JoakimJa</Authors>
