@@ -79,7 +79,7 @@ public class Demo
 
 ## 💻 Repository
 
-Source code and issue tracking:  
+Source code and issue tracking:   
 [GitHub - Eudr.Traces.ApiClient](https://github.com/joakimja/Eudr.Traces.ApiClient)
 
 ---
