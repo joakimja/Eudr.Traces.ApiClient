@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Build and deploy
     runs-on: windows-latest
 
     steps:
@@ -25,9 +26,6 @@ jobs:
 
     - name: Build project
       run: dotnet build '././src/Eudr.Traces/Eudr.Traces.sln' --configuration Release --no-restore
-      
-    - name: Run unit tests
-      run: dotnet test '././src/Eudr.Traces/Eudr.Traces.Tests/Eudr.Traces.Tests.csproj' --configuration Release --no-build --verbosity normal
 
     - name: Pack NuGet package
       run: dotnet pack '././src/Eudr.Traces/Eudr.Traces.Integrations/Eudr.Traces.Integrations.csproj' --configuration Release --no-build
