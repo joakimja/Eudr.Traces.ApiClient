@@ -15,7 +15,7 @@
     <PackageProjectUrl>https://github.com/joakimja/Eudr.Traces.ApiClient</PackageProjectUrl>
     <RepositoryUrl>https://github.com/joakimja/Eudr.Traces.ApiClient.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Connector mot EU:s TRACES/EUDR API</Description>
+    <Description>Connector against EU:s TRACES/EUDR API</Description>
     <PackageReleaseNotes>First versionen of EUDR-integration.</PackageReleaseNotes>
     <Copyright>Copyright 2025</Copyright>
     <PackageTags>eudr;traces;api;integration;eu;deforestation;regulation</PackageTags>
