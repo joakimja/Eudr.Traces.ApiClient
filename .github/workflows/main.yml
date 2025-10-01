@@ -31,4 +31,4 @@ jobs:
       run: dotnet pack '././src/Eudr.Traces/Eudr.Traces.Integrations/Eudr.Traces.Integrations.csproj' --configuration Release --no-build --output ./artifacts
 
     - name: Publish to NuGet.org
-      run: dotnet nuget push ./artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+      run: dotnet nuget push "./artifacts/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
