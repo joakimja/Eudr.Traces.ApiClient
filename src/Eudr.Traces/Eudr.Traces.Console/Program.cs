@@ -1,9 +1,6 @@
 ﻿using Eudr.Traces.Integrations;
 using Eudr.Traces.Integrations.Configurations;
 using Eudr.Traces.Integrations.Entities;
-using Eudr.Traces.Integrations.ServiceAgents.Proxys.EUDRSubmissionService;
-using System.IO;
-using System.Text;
 
 
 
