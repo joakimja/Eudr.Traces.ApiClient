@@ -1,6 +1,6 @@
-# Eudr.Traces.Integrations
+# Eudr.Traces.ApiClient
 
-**Eudr.Traces.Integrations** is a .NET 9 library that provides an abstraction layer for communicating with the EU TRACES system regarding EUDR (EU Deforestation Regulation) operations.
+**Eudr.Traces.ApiClient** is a .NET 9 library that provides an abstraction layer for communicating with the EU TRACES system regarding EUDR (EU Deforestation Regulation) operations.
 
 It defines the `IEUDRServiceAgent` interface, which enables retrieval, submission, and validation of Due Diligence Statements (DDS).
 Contributions are very welcome – feel free to add more helpful methods or validations to improve the functionality of this library. 
