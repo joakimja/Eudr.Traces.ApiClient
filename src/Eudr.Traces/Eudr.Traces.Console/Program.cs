@@ -10,7 +10,7 @@ EudrSettings eudrSettings = new EudrSettings();
 eudrSettings.ApiUrl = "https://acceptance.eudr.webcloud.ec.europa.eu";
 eudrSettings.Username = "";
 eudrSettings.AuthenticationKey = "";
-eudrSettings.WebServiceClientId = "";
+eudrSettings.WebServiceClientId = "eudr-test"; // used in acceptance environment
 
 IEUDRServiceAgent agent = new EUDRServiceAgent(eudrSettings);
 
@@ -43,4 +43,4 @@ Console.WriteLine("Response DDS identifierkey " + response);
 
 Console.WriteLine("Get DDS Status");
 var responseStatus= await agent.GetDdsStatusAsync([response]);
-Console.WriteLine("Response Status DDS" + response);
+Console.WriteLine("Response Status DDS " + responseStatus.First().status);

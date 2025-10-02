@@ -19,26 +19,17 @@ namespace Eudr.Traces.Integrations.Authentications
             _authenticationKey = authenticationKey;
         }
 
-        public object BeforeSendRequest(ref Message request, IClientChannel channel)
+        public object? BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             var securityHeaderXml = CreateWorkingSecurityHeader();
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(securityHeaderXml);
 
             var securityElement = xmlDoc.DocumentElement;
-            request.Headers.Add(new XmlElementMessageHeader(securityElement));
-
-            // Logga hela request
-            var buffer = request.CreateBufferedCopy(int.MaxValue);
-            var copy = buffer.CreateMessage();
-            request = buffer.CreateMessage(); // reset default
-
-            var sb = new StringBuilder();
-            using var writer = XmlWriter.Create(sb, new XmlWriterSettings { Indent = true });
-            copy.WriteMessage(writer);
-            writer.Flush();
-
-            Console.WriteLine("SOAP Request:\n" + sb);
+            if (securityElement != null) {
+                request.Headers.Add(new XmlElementMessageHeader(securityElement));
+            }
+            
 
             return null;
         }
