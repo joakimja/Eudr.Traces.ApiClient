@@ -40,7 +40,9 @@ public class Demo
 
     public async Task Run()
     {
-        
+        //Verify connection
+        var responseEcho = await agent.TestEchoAsync();
+        Console.WriteLine("TestEcho Success=" + responseEcho);
 
         // Submit DDS with GPS
         var gpsRequest = new DDSWithGps { Latitude = 56.0, Longitude = 14.0 }; // and all othere properties needs
@@ -62,6 +64,7 @@ public class Demo
 
 ## 📚 Features
 
+- Verifiy and test connection, user and authKey
 - Retrieve DDS status by GUID identifiers
 - Retrieve DDS by reference and verification numbers
 - Submit DDS (full request, GPS-based, or reference-based)
