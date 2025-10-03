@@ -4,3 +4,5 @@ dotnet-svcutil https://acceptance.eudr.webcloud.ec.europa.eu/tracesnt/ws/EUDRSub
 
 dotnet-svcutil https://acceptance.eudr.webcloud.ec.europa.eu/tracesnt/ws/EUDRRetrievalServiceV1?wsdl --serializer XmlSerializer -n "\*",Eudr.Traces.Integrations.Proxys.EUDRRetrievalService --outputFile EUDRRetrievalServiceV1.cs
 
+dotnet-svcutil https://acceptance.eudr.webcloud.ec.europa.eu/tracesnt/ws/EudrEchoService?wsdl --serializer XmlSerializer -n "\*",Eudr.Traces.Integrations.Proxys.EUDREchoService --outputFile EUDREchoService.cs
+

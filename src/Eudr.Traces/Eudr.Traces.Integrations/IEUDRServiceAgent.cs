@@ -1,4 +1,5 @@
 ﻿using Eudr.Traces.Integrations.Entities;
+using Eudr.Traces.Integrations.ServiceAgents.Proxys.EUDREchoService;
 using Eudr.Traces.Integrations.ServiceAgents.Proxys.EUDRRetrievalService;
 using Eudr.Traces.Integrations.ServiceAgents.Proxys.EUDRSubmissionService;
 
@@ -9,6 +10,17 @@ namespace Eudr.Traces.Integrations
     /// </summary>
     public interface IEUDRServiceAgent
     {
+        /// <summary>
+        /// TestConnection simple
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> TestEchoAsync();
+        /// <summary>
+        /// Test connection, username and authKey setup
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<EudrEchoResponse> TestEchoAsync(EudrEchoRequestType request);
         /// <summary>
         /// Retrieves the status of one or more DDS (Due Diligence Statements).
         /// </summary>

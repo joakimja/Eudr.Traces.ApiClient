@@ -14,6 +14,9 @@ eudrSettings.WebServiceClientId = "eudr-test"; // used in acceptance environment
 
 IEUDRServiceAgent agent = new EUDRServiceAgent(eudrSettings);
 
+var responseEcho = await agent.TestEchoAsync();
+Console.WriteLine("TestEcho Success=" + responseEcho);
+
 // Test setup
 var requestGPS = new DDSWithGps
 {

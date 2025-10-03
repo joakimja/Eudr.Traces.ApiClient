@@ -2,9 +2,9 @@
 using Eudr.Traces.Integrations.Configurations;
 using Eudr.Traces.Integrations.Entities;
 using Eudr.Traces.Integrations.Entities.GeoJson;
+using Eudr.Traces.Integrations.ServiceAgents.Proxys.EUDREchoService;
 using Eudr.Traces.Integrations.ServiceAgents.Proxys.EUDRRetrievalService;
 using Eudr.Traces.Integrations.ServiceAgents.Proxys.EUDRSubmissionService;
-using System.Reflection.Metadata.Ecma335;
 using System.ServiceModel;
 using System.Text;
 using System.Text.Json;
@@ -17,12 +17,14 @@ namespace Eudr.Traces.Integrations
 
         private readonly string _webserviceUrlSubmission;
         private readonly string _webserviceUrlRetrieval;
+        private readonly string _webserviceUrlEcho;
 
         public EUDRServiceAgent(EudrSettings settings)
         {
             _settings = settings;
             _webserviceUrlRetrieval = settings.ApiUrl + "/tracesnt/ws/EUDRRetrievalServiceV1";
             _webserviceUrlSubmission = settings.ApiUrl + "/tracesnt/ws/EUDRSubmissionServiceV1";
+            _webserviceUrlEcho = settings.ApiUrl + "/tracesnt/ws/EudrEchoService";
             Validate(settings);
         }
 
@@ -72,7 +74,36 @@ namespace Eudr.Traces.Integrations
             return retval;
         }
 
+        public async Task<bool> TestEchoAsync()
+        {
+            EudrEchoRequestType request = new EudrEchoRequestType();
+            request.query = "Success";
+            var response = await TestEchoAsync(request);
+
+            bool ping = false;
+            if (response.EudrEchoResponse1 != null && response.EudrEchoResponse1.status.Contains(request.query))
+            {
+                ping = true;
+            }
+            return ping;
+        }
+
         #endregion Simple versions
+
+        #region Echo
+
+        public async Task<EudrEchoResponse> TestEchoAsync(EudrEchoRequestType request)
+        {
+            EudrEchoServicePortClient client = new EudrEchoServicePortClient();
+            client.Endpoint.Address = new EndpointAddress(_webserviceUrlEcho);
+            client.Endpoint.EndpointBehaviors.Add(new WsSecurityBehavior(_settings.Username, _settings.AuthenticationKey));
+
+            var response = await client.testEchoAsync(_settings.WebServiceClientId, request);
+
+            return response;
+        }
+
+        #endregion Echo
 
         #region Submission
 
