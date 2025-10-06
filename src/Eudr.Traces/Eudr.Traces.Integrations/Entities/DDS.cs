@@ -57,7 +57,7 @@ namespace Eudr.Traces.Integrations.Entities
         /// <summary>
         /// Weight or volume of the goods (e.g., "1500 kg").
         /// </summary>
-        public decimal CommodityGoodsWeight { get; set; } 
+        public decimal CommodityGoodsWeight { get; set; }
 
         /// <summary>
         /// Scientific name of the species used in the commodity (e.g., "Swietenia macrophylla").

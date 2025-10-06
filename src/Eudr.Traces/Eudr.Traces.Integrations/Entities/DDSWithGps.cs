@@ -9,14 +9,14 @@ namespace Eudr.Traces.Integrations.Entities
     /// <summary>
     /// Simple class to add a DDS with gps
     /// </summary>
-    public class DDSWithGps:DDS
+    public class DDSWithGps : DDS
     {
         public DDSWithGps()
         {
             ProducerGpsPoints = new List<GpsPoint>();
         }
 
-      
+
 
         /// <summary>
         /// Name of the producer or farm where the commodity was sourced.
@@ -34,6 +34,6 @@ namespace Eudr.Traces.Integrations.Entities
         /// </summary>
         public IEnumerable<GpsPoint> ProducerGpsPoints { get; set; }
 
-       
+
     }
 }

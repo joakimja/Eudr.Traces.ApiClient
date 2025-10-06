@@ -9,9 +9,10 @@ namespace Eudr.Traces.Integrations.Entities
     /// <summary>
     /// Simple class to add a DDS with reference and verification
     /// </summary>
-    public class DDSWithReference:DDS
+    public class DDSWithReference : DDS
     {
-        public DDSWithReference() {
+        public DDSWithReference()
+        {
             References = new List<(string reference, string verification)>();
         }
         /// <summary>

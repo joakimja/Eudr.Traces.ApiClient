@@ -26,10 +26,11 @@ namespace Eudr.Traces.Integrations.Authentications
             xmlDoc.LoadXml(securityHeaderXml);
 
             var securityElement = xmlDoc.DocumentElement;
-            if (securityElement != null) {
+            if (securityElement != null)
+            {
                 request.Headers.Add(new XmlElementMessageHeader(securityElement));
             }
-            
+
 
             return null;
         }
