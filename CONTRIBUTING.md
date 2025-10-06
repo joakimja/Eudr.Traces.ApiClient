@@ -25,4 +25,4 @@ If you find a bug, open an *Issue* and include:
 
 ## License
 By contributing, you agree that your contributions will be licensed under the same terms as this project.  
-See [LICENSE](LICENSE) for details.
+See MIT License (LICENSE) for details.
